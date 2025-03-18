@@ -1,0 +1,56 @@
+<!DOCTYPE html> 
+<html> 
+    <head> 
+        <meta charset="UTF-8">
+        <style>
+            /* Estilo para o div onde o conteúdo aparece/desaparece */
+            #exibirDiv {
+                transition: opacity 0.5s ease; /* Transição suave de 0.5 segundos */
+                opacity: 1; /* Div visível por padrão */
+                text-align: center; /* Centraliza o texto */
+            }
+
+            /* Div invisível */
+            #exibirDiv.hidden {
+                opacity: 0; /* Torna o div invisível */
+            }
+        </style>
+    </head> 
+    <body> 
+        <!-- Div para o botão -->
+        <div id="botaoDiv">
+            <button id="botaoCarregar">Carregando cervejas...</button>
+        </div>
+        
+        <!-- Div para exibir o nome da cerveja -->
+        <div id="exibirDiv">
+        </div>
+    </body> 
+    <script>  
+        let isVisible = false; // Controla o estado de visibilidade
+
+        function carregarDiv() {
+            let div = document.getElementById("exibirDiv");
+
+            // Adiciona a classe 'hidden' para fade out
+            div.classList.add("hidden");
+
+            setTimeout(() => {
+                if (!isVisible) {
+                    // Atualiza o conteúdo após fade out
+                    div.innerHTML = `<h1>Guinness</h1>`;
+                } else {
+                    // Remove o conteúdo após fade out
+                    div.innerHTML = "";
+                }
+                isVisible = !isVisible;
+
+                // Remove a classe 'hidden' para fade in
+                div.classList.remove("hidden");
+            }, 500); // Tempo deve coincidir com a duração definida no CSS (0.5s)
+        }
+        
+        let botao = document.getElementById("botaoCarregar");
+        botao.addEventListener("click", carregarDiv);
+    </script>
+</html>
