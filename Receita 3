@@ -1,6 +1,3 @@
-//Feito a correção de erros com ajuda do: https://copilot.microsoft.com/ 
-
-
 <!DOCTYPE html> 
 <html> 
     <head> 
@@ -20,9 +17,9 @@
         </style>
     </head> 
     <body> 
-        <!-- Div para o botão -->
-        <div id="botaoDiv">
-            <button id="botaoCarregar">Carregando cervejas...</button>
+        <!-- Div para o link -->
+        <div id="linkDiv">
+            <a href="#" id="linkCarregar">Carregando cervejas...</a>
         </div>
         
         <!-- Div para exibir o nome da cerveja -->
@@ -32,7 +29,7 @@
     <script>  
         let isVisible = false; // Controla o estado de visibilidade
 
-        function carregarDiv() {
+        const carregarDiv = () => {
             let div = document.getElementById("exibirDiv");
 
             // Adiciona a classe 'hidden' para fade out
@@ -51,9 +48,12 @@
                 // Remove a classe 'hidden' para fade in
                 div.classList.remove("hidden");
             }, 500); // Tempo deve coincidir com a duração definida no CSS (0.5s)
-        }
+        };
         
-        let botao = document.getElementById("botaoCarregar");
-        botao.addEventListener("click", carregarDiv);
+        const link = document.getElementById("linkCarregar");
+        link.addEventListener("click", (event) => {
+            event.preventDefault(); // Evitar o comportamento padrão do link
+            carregarDiv();
+        });
     </script>
 </html>
